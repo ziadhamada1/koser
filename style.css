@@ -1,0 +1,665 @@
+body {
+  margin: 0;
+  font-family: "Cairo", sans-serif;
+  background: #f5f5f5;
+}
+
+/* 🟦 الهيدر */
+header {
+  background: #0C2D57;
+  color: #FC6736;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 4px solid #FC6736;
+  animation: fadeDown 1.2s ease;
+}
+@keyframes fadeDown {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* 🌍 قسم نبذة عن المشروع */
+.about-section {
+  width: 90%;
+  margin: 40px auto;
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px 30px;
+  direction: rtl;
+  text-align: justify;
+  line-height: 1.8;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1.2s ease forwards;
+  animation-delay: 0.3s;
+}
+@keyframes fadeUp {
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.about-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.about-section h2 {
+  font-size: 1.8em;
+  color: #0b3d91;
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #0b3d91;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.about-section p {
+  color: #333;
+  font-size: 1.1em;
+  font-family: "Cairo", sans-serif;
+}
+.about-section strong {
+  color: #0056b3;
+}
+
+/* متجاوب */
+@media (max-width: 768px) {
+  .about-section {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .about-section h2 {
+    font-size: 1.5em;
+  }
+
+  .about-section p {
+    font-size: 1em;
+  }
+}
+
+/* 🗺️ الخريطة */
+#map {
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.9);
+  animation: zoomIn 1s ease forwards;
+  animation-delay: 0.6s;
+}
+@keyframes zoomIn {
+  to {opacity: 1; transform: scale(1);}
+}
+
+/* 🏷️ عنوان الخريطة */
+.map-title {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 95, 115, 0.9);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: opacity 0.5s ease;
+  animation: fadeIn 1.5s ease;
+  opacity: 1;
+  z-index: 1000;
+}
+.map-title.hidden { opacity: 0; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🧭 اختيار الخريطة */
+.map-select, .upload-label {
+  display: block;
+  margin: 15px auto;
+  padding: 10px 15px;
+  background: #0C2D57;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+.map-select:hover, .upload-label:hover {
+  background: #FC6736;
+}
+input[type="file"] { display: none; }
+
+/* 📤 رفع الملفات */
+.upload-section { text-align: center; margin: 10px 0; }
+
+/* 🧾 الوصف */
+.map-description {
+  background: white;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1.2s ease forwards;
+  animation-delay: 1s;
+}
+.map-description h3 { color: #005f73; margin-bottom: 10px; }
+
+/* 📊 التحليل */
+.analysis-section {
+  background: #f9fafb;
+  padding: 40px 20px;
+  text-align: center;
+  color: #333;
+  border-top: 2px solid #005f73;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1.2s ease forwards;
+  animation-delay: 1.3s;
+}
+.analysis-section h2 {
+  color: #005f73;
+  font-size: 26px;
+  margin-bottom: 30px;
+}
+.analysis-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+.analysis-box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 25px;
+  width: 420px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+}
+.analysis-box:nth-child(1) {
+  animation-delay: 1.5s;
+}
+.analysis-box:nth-child(2) {
+  animation-delay: 1.8s;
+}
+.analysis-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+.analysis-box.flood { border-left: 6px solid #e63946; }
+.analysis-box.dams { border-left: 6px solid #0077b6; }
+
+/* 🏠 زر الرجوع */
+.home-btn {
+  background: #005f73;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.home-btn:hover { background: #0a9396; }
+
+
+
+/* 🏜️ قسم التربة والغطاء النباتي */
+.soil-section {
+  background: linear-gradient(135deg, #fafafa, #eef4ff);
+  padding: 50px 20px;
+  text-align: center;
+  border-top: 3px solid #0C2D57;
+  border-bottom: 3px solid #0C2D57;
+}
+
+.soil-section h2 {
+  font-size: 2rem;
+  color: #0C2D57;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.soil-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.soil-box {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 420px;
+  padding: 25px;
+  text-align: right;
+  direction: rtl;
+  line-height: 1.8;
+  transition: all 0.3s ease;
+  border-right: 6px solid #FC6736;
+}
+
+.soil-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.soil-box h3 {
+  color: #0C2D57;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.soil-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.soil-box ul li {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.soil-box em {
+  color: #0077b6;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.soil-summary {
+  background: #0C2D57;
+  color: white;
+  border-radius: 10px;
+  width: 90%;
+  margin: 30px auto 0;
+  padding: 20px;
+  line-height: 1.9;
+  font-size: 1.1em;
+}
+
+/* للموبايل */
+@media (max-width: 768px) {
+  .soil-box { width: 90%; }
+  .soil-section h2 { font-size: 1.6rem; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 🪨 قسم الصخور */
+.rocks-section {
+  width: 95%;
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.rocks-section h2 {
+  text-align: center;
+  color: #0a4b78;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+/* ✅ تغليف الجدول لجعله مرنًا على الموبايل */
+.rocks-table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* سحب سلس على الموبايل */
+  border-radius: 10px;
+}
+
+.rocks-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 0.95rem;
+  min-width: 700px; /* عشان الجدول مايتكسرش في الشاشات الصغيرة */
+}
+
+.rocks-table th {
+  background-color: #0a4b78;
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.rocks-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+/* 🎨 ألوان الصفوف حسب النوع */
+.sedimentary {
+  background-color: #fdf7e4;
+}
+
+.igneous {
+  background-color: #f4e8ff;
+}
+
+.metamorphic {
+  background-color: #e5f4f2;
+}
+
+.rocks-table tr:hover {
+  background-color: #f0faff;
+  transition: 0.3s;
+}
+
+/* 📱 تحسين العرض على الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .rocks-section {
+    padding: 15px;
+  }
+
+  .rocks-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .rocks-table-container {
+    border: 1px solid #ddd;
+  }
+
+  .rocks-table {
+    font-size: 0.85rem;
+    min-width: 600px;
+  }
+}
+
+
+/* 🌧️ قسم معدل وكمية الأمطار */
+.rain-analysis-section {
+  background: linear-gradient(135deg, #fdfdfd, #eef6ff);
+  border-top: 3px solid #0C2D57;
+  border-bottom: 3px solid #0C2D57;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.rain-analysis-section h2 {
+  color: #0C2D57;
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.rain-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.rain-img-container img {
+  width: 90%;
+  max-width: 800px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border: 3px solid #FC6736;
+}
+
+.rain-description {
+  width: 85%;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 25px;
+  text-align: justify;
+  line-height: 1.9;
+  color: #333;
+  font-size: 1.05em;
+}
+
+.rain-description strong {
+  color: #FC6736;
+}
+
+.maps-section {
+  background: linear-gradient(135deg, #fdfcfb, #eef3ff);
+  padding: 60px 20px;
+  text-align: center;
+  border-top: 3px solid #0C2D57;
+  border-bottom: 3px solid #0C2D57;
+}
+
+.maps-section h2 {
+  color: #0C2D57;
+  font-size: 28px;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #FC6736;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.maps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.map-item {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.map-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+.map-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* 🔥 عشان الصورة تبان كاملة بدون قص */
+  background-color: #f7f7f7;
+}
+
+.map-item p {
+  padding: 15px 20px;
+  text-align: justify;
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+.map-item strong {
+  color: #FC6736;
+}
+/* 🖼️ نافذة عرض الصورة */
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.popup img {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 95vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 3px solid #FC6736;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  animation: zoomIn 0.4s ease;
+}
+
+.popup h3 {
+  color: #FC6736;
+  font-size: 24px;
+  margin-top: 25px;
+}
+
+.popup p {
+  color: #fff;
+  font-size: 18px;
+  width: 85%;
+  margin: 10px auto;
+  line-height: 1.7;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.close:hover {
+  color: #FC6736;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+
+/* 🧱 قسم تكوين القصير */
+.formation-section {
+  /* background-color: #0d0d0d; */
+  color: #000000;
+  padding: 70px 40px;
+  text-align: center;
+}
+
+.formation-section h2 {
+  color: #FC6736;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+.formation-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #FC6736;
+  border-radius: 2px;
+}
+
+.formation-content {
+  max-width: 900px;
+  margin: 0 auto;
+  /* background: rgba(255, 255, 255, 0.03); */
+  padding: 30px 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(252, 103, 54, 0.2);
+  text-align: justify;
+  line-height: 1.9;
+  font-size: 17px;
+  color: #000000;
+  box-shadow: 0 0 15px rgba(252, 103, 54, 0.05);
+  transition: 0.3s;
+}
+
+.formation-content:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 25px rgba(252, 103, 54, 0.1);
+}
+
+.formation-content strong {
+  color: #FC6736;
+  font-weight: 600;
+}
+
+/* تأثير دخول بسيط */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formation-section {
+  animation: fadeUp 0.8s ease-in-out;
+}
+
+/* 📱 تحسين العرض للموبايل */
+@media (max-width: 768px) {
+  .formation-section {
+    padding: 50px 20px;
+  }
+
+  .formation-content {
+    padding: 25px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
